@@ -6,7 +6,10 @@ require("dotenv").config();
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity("` um mich zu aktivieren");
 });
+
+
 
 childProcess.stdout.setEncoding("utf8");
 
@@ -23,15 +26,17 @@ childProcess.stdout.on("data", function (data) {
   }
 });
 
-client.on("message", (msg) => {
-  if (msg.content.startsWith("`")) {
-    console.log(msg.content);
-    msg.channel.send("test successful");
-  }
-});
+
 
 childProcess.stdin.write("source activate chatbot\n");
 
 childProcess.stdin.write("python ~/Desktop/Chatbot/chatbot.py\n");
+
+client.on("message", (msg) => {
+  if (msg.content.startsWith("`")) {
+    console.log(msg.content);
+  }
+});
+
 
 client.login(process.env.token);
