@@ -35,6 +35,8 @@ childProcess.stdin.write("python ~/Desktop/Chatbot/chatbot.py\n");
 client.on("message", (msg) => {
   if (msg.content.startsWith("`")) {
     console.log(msg.content);
+    var message = msg.content.replace('`', '')
+    console.log(message)
   }
 });
 
