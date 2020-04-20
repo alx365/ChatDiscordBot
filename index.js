@@ -2,6 +2,11 @@ var cp = require('child_process');
 var childProcess = cp.spawn('python', ['-i']);
 const Discord = require('discord.js');
 const client = new Discord.Client();
+require('dotenv').config()
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
 
 
 childProcess.stdout.setEncoding('utf8')
@@ -28,3 +33,7 @@ childProcess.stdin.on("data", function(data) {
     childProcess.stdin.write("Hi\n")
   }
 })
+
+
+
+client.login(process.env.token);
